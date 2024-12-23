@@ -1,21 +1,20 @@
-#binary search looks for te middle number and adjusts accordingly
-#for a list n, it will take log n, which is to base 2
+def bubble_sort(my_list):
+    # Get length of the list
+    list_length = len(my_list) - 1
 
-def binary_search(list, x):
-    low = 0
-    high = len(list) - 1
-    while low <= high:
-        mid = round((low + high)/2)
-        guess = list[mid]
-        if guess == x:
-            return mid
-        if guess > x:
-            high = mid - 1
-        else:
-            low = mid + 1
-    return None
+    #Variable to track state of sorted
+    is_sorted =  False
+
+    while not is_sorted:
+        # Change sorted to true, check to allow breaking from while
+        is_sorted = True
+
+        for i in range(0, list_length):
+            #check each adjacent pair
+            if my_list[i] > my_list[i+1]:
+                is_sorted = False
+                my_list[i], my_list[i+1] = my_list[i+1], my_list[i]
+    return my_list
 
 
-my_list = [1, 2, 3, 4, 5, 6, 7, 8]
-x = 1
-print(binary_search(my_list, x))
+print(bubble_sort([5,6,7, 4, 2,6, 8, 3, 7]))
